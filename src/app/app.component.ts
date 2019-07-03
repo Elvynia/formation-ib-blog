@@ -11,13 +11,18 @@ import { ListAction } from './list/list.component';
 export class AppComponent implements OnInit {
   editing: boolean;
   articles: Array<Article>;
+  editArticle: Article;
 
   constructor(private service: ArticleService) {
     this.editing = false;
+    this.editArticle = new Article();
   }
 
   swapView() {
     this.editing = !this.editing;
+    if (!this.editing) {
+      this.editArticle = new Article();
+    }
   }
 
   ngOnInit() {
@@ -31,13 +36,20 @@ export class AppComponent implements OnInit {
     // .subscribe(
     //   (list: Array<any>) => this.articles = list
     // );
+    this.swapView();
+  }
+
+  updateArticle(article: Article) {
+    this.service.update(article);
+    this.swapView();
   }
 
   listAction(action: ListAction) {
     if (action.type === 'DELETE') {
       this.service.delete(action.payload);
-    } else {
-      // Edition !
+    } else { // Edition !
+      this.editArticle = JSON.parse(JSON.stringify(this.service.read(action.payload)));
+      this.swapView();
     }
   }
 }

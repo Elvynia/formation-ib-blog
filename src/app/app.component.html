@@ -20,7 +20,8 @@
 <div class="container">
   <h1>Bienvenue sur IB Blog !</h1>
   <button class="btn btn-primary" (click)="swapView()">{{ editing ? "Revenir à la liste" : "Créer un article" }}</button>
-  <app-form *ngIf="editing; else listViewTpl" (onCreate)="addArticle($event)"></app-form>
+  <app-form *ngIf="editing; else listViewTpl" [article]="editArticle"
+    (onCreate)="addArticle($event)" (onUpdate)="updateArticle($event)"></app-form>
 </div>
 <ng-template #listViewTpl>
   <app-list [data]="articles" (onAction)="listAction($event)"></app-list>

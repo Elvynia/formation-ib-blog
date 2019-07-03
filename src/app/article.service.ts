@@ -37,6 +37,20 @@ export class ArticleService {
     return this.cache.asObservable();
   }
 
+  public read(id: number): Article {
+    return this.cache.value.find((article) => article.id === id);
+  }
+
+  public update(article: Article): Observable<Array<any>> {
+    let newList = this.cache.value.slice();
+    let index = newList.findIndex((a) => a.id === article.id);
+    if (index >= 0) {
+      newList.splice(index, 1, article);
+      this.cache.next(newList);
+    }
+    return this.cache;
+  }
+
   public delete(id: number): Observable<Array<any>> {
     let newList = this.cache.value.slice();
     let index = newList.findIndex((article) => article.id === id);
