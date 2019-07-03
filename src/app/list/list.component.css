@@ -5,3 +5,11 @@ div.article {
 div.article.even {
     background-color: aquamarine;
 }
+
+img {
+    cursor: pointer;
+}
+
+img:hover {
+    transform: scale(1.2);
+}

@@ -1,0 +1,15 @@
+[
+    {
+        "id": 0,
+        "title": "Article n°1",
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet urna dui, eget aliquet metus interdum sit amet. Maecenas et bibendum erat, eget condimentum ipsum. Praesent viverra finibus nulla, non maximus elit ultrices in. Integer tellus nisl, finibus commodo tellus id, semper facilisis nulla. Praesent eget felis at sapien bibendum bibendum. Nulla convallis lacus nunc. Sed nec mollis orci. Ut malesuada libero ut enim rutrum faucibus. Phasellus consectetur consequat orci posuere finibus. Mauris lobortis ut sem vitae tincidunt. Fusce ultricies mauris nec vulputate volutpat. Curabitur dapibus ipsum leo, et volutpat sapien commodo vitae. Praesent nunc mauris, eleifend a molestie ut, ornare sed risus."
+    },{
+        "id": 1,
+        "title": "Article n°2",
+        "content": "Nunc dictum, nisl nec varius placerat, nisi turpis mattis orci, at finibus arcu ipsum vitae lacus. Maecenas vulputate, eros vel suscipit imperdiet, urna ligula fermentum purus, non semper enim dui congue leo. Nunc sed bibendum mi, ut tincidunt nulla. Vestibulum lobortis quam feugiat, dignissim sapien id, tristique urna. In porttitor ipsum tortor. Etiam feugiat erat nulla, eget tincidunt urna tempor sodales. Nulla sollicitudin sed mi blandit tincidunt. In mattis pretium mi a rutrum."
+    },{
+        "id": 2,
+        "title": "Article n°3",
+        "content": "Donec eget ligula convallis, accumsan magna ac, aliquet leo. Pellentesque lectus lacus, bibendum quis tristique in, fermentum convallis mi. Aenean convallis metus metus, viverra maximus nisi dictum ac. In nec orci eget lacus maximus aliquam. Vestibulum posuere risus at ante posuere, in ultricies tortor gravida. Quisque sit amet lectus ac tortor vehicula tempus. Pellentesque in lorem elementum metus finibus fringilla. Quisque at porta dui. Vivamus dapibus ex at dolor pellentesque, et pharetra felis posuere. Mauris ante nisi, accumsan eu porttitor id, euismod dapibus tellus. Pellentesque ipsum enim, dignissim non mi ac, placerat egestas purus. Suspendisse mauris nunc, pulvinar in dignissim eget, accumsan eu risus. Donec id luctus ligula. In aliquam ultricies vehicula. Vivamus et ultricies augue. Maecenas sed finibus urna."
+    }
+]

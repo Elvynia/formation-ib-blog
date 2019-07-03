@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from './article.service';
 import { Article } from './article';
+import { ListAction } from './list/list.component';
 
 @Component({
   selector: 'app-root',
@@ -20,10 +21,23 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.articles = this.service.articles;
+    this.service.initialize().subscribe(
+      (list: Array<any>) => this.articles = list
+    );
   }
 
   addArticle(article: any) {
     this.service.create(article.title, article.content);
+    // .subscribe(
+    //   (list: Array<any>) => this.articles = list
+    // );
+  }
+
+  listAction(action: ListAction) {
+    if (action.type === 'DELETE') {
+      this.service.delete(action.payload);
+    } else {
+      // Edition !
+    }
   }
 }

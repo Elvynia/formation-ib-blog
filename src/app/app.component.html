@@ -23,5 +23,5 @@
   <app-form *ngIf="editing; else listViewTpl" (onCreate)="addArticle($event)"></app-form>
 </div>
 <ng-template #listViewTpl>
-  <app-list [data]="articles"></app-list>
+  <app-list [data]="articles" (onAction)="listAction($event)"></app-list>
 </ng-template>

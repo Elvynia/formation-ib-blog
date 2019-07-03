@@ -1,7 +1,11 @@
 <div>
     <div class="article" *ngFor="let article of data; index as i; even as isEven"
         [ngClass]="{ even: isEven }">
-        <h2 title="{{ i }}">{{ article.title }}</h2>
+        <h2 title="{{ i }}">
+            {{ article.title }}
+            <img width="24" src="/assets/delete.svg" (click)="doAction('DELETE', article.id)">
+            <img width="24" src="/assets/edit.svg" (click)="doAction('EDIT', article.id)">
+        </h2>
         <p>{{ article.content }}</p>
     </div>
 </div>
