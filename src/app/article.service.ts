@@ -2,17 +2,23 @@ import { Injectable } from '@angular/core';
 import { Article } from './article';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { environment as ENV } from '../environments/environment';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
   private cache: BehaviorSubject<Array<Article>>;
-  private idCount: number;
+  // private idCount: number;
+  private apiUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.idCount = 10;
+    // this.idCount = 10;
     this.cache = new BehaviorSubject([]);
+    this.apiUrl = ENV.apiUrl + '/article';
     // this.articles = [
     //   new Article(0, 'Article n°1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce aliquet urna dui, eget aliquet metus interdum sit amet. Maecenas et bibendum erat, eget condimentum ipsum. Praesent viverra finibus nulla, non maximus elit ultrices in. Integer tellus nisl, finibus commodo tellus id, semper facilisis nulla. Praesent eget felis at sapien bibendum bibendum. Nulla convallis lacus nunc. Sed nec mollis orci. Ut malesuada libero ut enim rutrum faucibus. Phasellus consectetur consequat orci posuere finibus. Mauris lobortis ut sem vitae tincidunt. Fusce ultricies mauris nec vulputate volutpat. Curabitur dapibus ipsum leo, et volutpat sapien commodo vitae. Praesent nunc mauris, eleifend a molestie ut, ornare sed risus.'),
     //   new Article(1, 'Article n°2', 'Nunc dictum, nisl nec varius placerat, nisi turpis mattis orci, at finibus arcu ipsum vitae lacus. Maecenas vulputate, eros vel suscipit imperdiet, urna ligula fermentum purus, non semper enim dui congue leo. Nunc sed bibendum mi, ut tincidunt nulla. Vestibulum lobortis quam feugiat, dignissim sapien id, tristique urna. In porttitor ipsum tortor. Etiam feugiat erat nulla, eget tincidunt urna tempor sodales. Nulla sollicitudin sed mi blandit tincidunt. In mattis pretium mi a rutrum.'),
@@ -23,7 +29,9 @@ export class ArticleService {
   }
 
   public initialize(): Observable<Array<any>> {
-    this.httpClient.get<Array<any>>('/assets/articles.json').subscribe(
+    this.httpClient.get<Array<any>>(this.apiUrl).pipe(
+      map((list) => list.map((element) => new Article(element.id, element.title, element.description)))
+    ).subscribe(
       (list) => this.cache.next(list),
       (error) => console.error(error)
     );
@@ -31,9 +39,17 @@ export class ArticleService {
   }
 
   public create(title: string, content: string): Observable<Array<any>> {
-    let newList = this.cache.value.slice();
-    newList.push(new Article(this.idCount++, title, content));
-    this.cache.next(newList);
+    const article = {
+      title,
+      description: content
+    };
+    this.httpClient.post(this.apiUrl, article).subscribe(
+      (backArticle: any) => {
+        let newList = this.cache.value.slice();
+        newList.push(new Article(backArticle.id, backArticle.title, backArticle.description));
+        this.cache.next(newList);
+      }
+    );
     return this.cache.asObservable();
   }
 
@@ -42,22 +58,35 @@ export class ArticleService {
   }
 
   public update(article: Article): Observable<Array<any>> {
-    let newList = this.cache.value.slice();
-    let index = newList.findIndex((a) => a.id === article.id);
-    if (index >= 0) {
-      newList.splice(index, 1, article);
-      this.cache.next(newList);
-    }
+    this.httpClient.put(this.apiUrl, {
+      id: article.id,
+      title: article.title,
+      description: article.content
+    }).subscribe(
+      (backArticle: any) => {
+        let updatedArticle = new Article(backArticle.id, backArticle.title, backArticle.description);
+        let newList = this.cache.value.slice();
+        let index = newList.findIndex((a) => a.id === article.id);
+        if (index >= 0) {
+          newList.splice(index, 1, updatedArticle);
+          this.cache.next(newList);
+        }
+      }
+    )
     return this.cache;
   }
 
   public delete(id: number): Observable<Array<any>> {
-    let newList = this.cache.value.slice();
-    let index = newList.findIndex((article) => article.id === id);
-    if (index >= 0) {
-      newList.splice(index, 1);
-      this.cache.next(newList);
-    }
+    this.httpClient.delete(`${this.apiUrl}/${id}`).subscribe(
+      () => {
+        let newList = this.cache.value.slice();
+        let index = newList.findIndex((article) => article.id === id);
+        if (index >= 0) {
+          newList.splice(index, 1);
+          this.cache.next(newList);
+        }
+      }
+    )
     return this.cache.asObservable();
   }
 }
