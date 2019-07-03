@@ -1,0 +1,8 @@
+input.ng-invalid.ng-touched, form.submitted input.ng-invalid {
+    border: 1px solid red;
+}
+
+span.error-msg {
+    color: red;
+    font-weight: bold;
+}

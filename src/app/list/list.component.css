@@ -1,0 +1,7 @@
+div.article {
+    margin-top: 10px;
+}
+
+div.article.even {
+    background-color: aquamarine;
+}

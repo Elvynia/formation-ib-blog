@@ -1,0 +1,7 @@
+<div>
+    <div class="article" *ngFor="let article of data; index as i; even as isEven"
+        [ngClass]="{ even: isEven }">
+        <h2 title="{{ i }}">{{ article.title }}</h2>
+        <p>{{ article.content }}</p>
+    </div>
+</div>

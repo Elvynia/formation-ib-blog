@@ -1,0 +1,19 @@
+<form (ngSubmit)="myForm.valid && submit(myForm)" #myForm="ngForm"
+    [ngClass]="{ submitted: myForm.submitted }">
+    <div class="form-group">
+        <label for="title">Titre</label>
+        <input class="form-control" id="title" name="title" [(ngModel)]="article.title"
+            required minlength="6">
+        <span *ngIf="myForm.controls.title?.errors?.required && myForm.submitted"
+            class="error-msg" >Ce champ est obligatoire.</span>
+        <span *ngIf="myForm.controls.title?.errors?.minlength && myForm.submitted"
+            class="error-msg" >Veuillez saisir au moins 6 caractères.</span>
+    </div>
+    <div class="form-group">
+        <label for="content">Contenu</label>
+        <input class="form-control" id="content" name="content" [(ngModel)]="article.content"
+            required>
+    </div>
+    <button type="reset" class="btn btn-warning">Annuler</button>
+    <button class="btn btn-primary">Valider</button>
+</form>
