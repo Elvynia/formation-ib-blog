@@ -11,8 +11,8 @@
     </div>
     <div class="form-group">
         <label for="content">Contenu</label>
-        <input class="form-control" id="content" name="content" [(ngModel)]="article.content"
-            required>
+        <textarea class="form-control" id="content" name="content" [(ngModel)]="article.content"
+            rows="10" required></textarea>
     </div>
     <button type="reset" class="btn btn-warning">Annuler</button>
     <button class="btn btn-primary">Valider</button>

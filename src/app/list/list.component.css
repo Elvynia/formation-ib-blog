@@ -13,3 +13,7 @@ img {
 img:hover {
     transform: scale(1.2);
 }
+
+p {
+    white-space: pre-line;
+}
