@@ -1,5 +1,9 @@
 <div>
-    <div class="article" *ngFor="let article of data; index as i; even as isEven"
+    <div class="form-group">
+        <label for="search">Recherche : </label>
+        <input id="search" class="form-control" [(ngModel)]="keywords" (ngModelChange)="doSearch()">
+    </div>
+    <div class="article" *ngFor="let article of (keywords ? filteredData : data); index as i; even as isEven"
         [ngClass]="{ even: isEven }">
         <h2 title="{{ i }}">
             {{ article.title }}
