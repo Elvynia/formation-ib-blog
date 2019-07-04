@@ -19,7 +19,16 @@ export const ROUTES: Routes = [
         pathMatch: 'full',
         redirectTo: '/home'
     }, {
+        path: 'admin',
+        component: NotFoundViewComponent,
+        data: {
+            imgUrl: 'http://www.lolalilo.com/content%20not%20available%20-%20Recherche%20Google_fichiers/images_061.png'
+        }
+    }, {
         path: '**',
-        component: NotFoundViewComponent
+        component: NotFoundViewComponent,
+        data: {
+            imgUrl: 'https://www.elegantthemes.com/blog/wp-content/uploads/2017/07/404-error.png'
+        }
     }
 ];
