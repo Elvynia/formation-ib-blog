@@ -1,1 +1,6 @@
-<p>contact-view works!</p>
+<div class="btn-group btn-block btn-group-lg">
+    <button class="btn btn-primary" [routerLink]="['admin']">Contacter l'administrateur</button>
+    <button class="btn btn-secondary" [routerLink]="['author', 'jmasson']">Contacter l'auteur Jérémy</button>
+    <button class="btn btn-secondary" [routerLink]="['author', 'IB Formation']">Contacter l'auteur IB</button>
+</div>
+<router-outlet></router-outlet>

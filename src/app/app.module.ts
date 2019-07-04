@@ -13,6 +13,8 @@ import { NotFoundViewComponent } from './not-found-view/not-found-view.component
 import { ListViewComponent } from './list-view/list-view.component';
 import { FormViewComponent } from './form-view/form-view.component';
 import { ContactViewComponent } from './contact-view/contact-view.component';
+import { ContactAdminComponent } from './contact-admin/contact-admin.component';
+import { ContactAuthorComponent } from './contact-author/contact-author.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ContactViewComponent } from './contact-view/contact-view.component';
     NotFoundViewComponent,
     ListViewComponent,
     FormViewComponent,
-    ContactViewComponent
+    ContactViewComponent,
+    ContactAdminComponent,
+    ContactAuthorComponent
   ],
   imports: [
     BrowserModule,
