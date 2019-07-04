@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Article } from '../article';
 import { Subject } from 'rxjs';
-import { debounceTime, map } from 'rxjs/operators';
+import { debounceTime, map, tap, filter } from 'rxjs/operators';
 
 export type ListAction = {
   type: 'DELETE' | 'EDIT',
@@ -29,7 +29,13 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.search.pipe(
+      // Délai sur la saisie utilisateur.
       debounceTime(300),
+      // Empêcher une recherche avec mots clés vide.
+      filter((keywords) => !!keywords),
+      // Surveiller les données qui passent dans l'Observable.
+      tap((keywords) => console.log(`Recherche lancée avec ${keywords} !`)),
+      // Transforme les données qui passent dans l'Observable.
       map((keywords) => keywords.toLowerCase()),
       map((keywords) => this.data.filter(
         (article) => article.title.toLowerCase().indexOf(keywords) >= 0
