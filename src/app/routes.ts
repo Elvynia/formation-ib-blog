@@ -11,6 +11,10 @@ export const ROUTES: Routes = [
         path: 'home',
         component: ListViewComponent
     }, {
+        path: 'dynamicform',
+        component: FormViewComponent,
+        outlet: 'rightview'
+    }, {
         path: 'form',
         component: FormViewComponent
     }, {

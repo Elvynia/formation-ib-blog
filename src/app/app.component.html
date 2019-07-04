@@ -6,24 +6,36 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#" [routerLinkActive]="'active'" [routerLink]="['home']">Home</a>
+        <a class="nav-link" href="#" [routerLinkActive]="'active'"
+          [routerLink]="[{ outlets: { primary: 'home', rightview: null }}]">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" routerLinkActive="formActive" [routerLink]="['form']">Créer un article</a>
+        <a class="nav-link" href="#" routerLinkActive="formActive"
+          [routerLink]="[{ outlets: { primary: 'form', rightview: null }}]">Créer un article</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" routerLinkActive="active" [routerLink]="['contact']">Contact</a>
+        <a class="nav-link" href="#" routerLinkActive="active"
+          [routerLink]="[{ outlets: { primary: 'contact', rightview: null }}]">Contact</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" routerLinkActive="active" [routerLink]="['admin']">Admin</a>
+        <a class="nav-link" href="#" routerLinkActive="active"
+          [routerLink]="[{ outlets: { primary: 'admin', rightview: null }}]">Admin</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" routerLinkActive="active" [routerLink]="['azertyyuiop']">AZERTYUIOP</a>
+        <a class="nav-link" href="#" routerLinkActive="active"
+          [routerLink]="[{ outlets: { primary: 'azertyuiop', rightview: null }}]">AZERTYUIOP</a>
       </li>
     </ul>
   </div>
 </nav>
 <div class="container">
   <h1>Bienvenue sur IB Blog !</h1>
-  <router-outlet></router-outlet>
+  <a href="#" [routerLink]="[{ outlets: { primary: 'home', rightview: 'dynamicform' }}]">Créer un article (dynamique)</a>
+  <div class="clearfix"></div>
+  <div class="float-left">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="float-right">
+    <router-outlet name="rightview"></router-outlet>
+  </div>
 </div>
